@@ -1,0 +1,61 @@
+:root {
+    --footer-margin: 1.4em;
+}
+
+.footer {
+    font-size: .85em;
+    font-weight: 500;
+    line-height: 1em;
+    margin-bottom: .5em;
+    margin-top: var(--footer-margin);
+    position: relative;
+}
+
+.footer::before {
+    border: 1px #eee inset;
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    transform: translateY(calc(var(--footer-margin)/2*-1));
+    width: 100%;
+}
+
+.footerIcon {
+    color: var(--ring-link-hover-color);
+    margin-left: .3em;
+    vertical-align: text-bottom;
+}
+
+.refreshButton {
+    border: none;
+    box-shadow: none !important;
+    cursor: pointer;
+    height: auto;
+    line-height: 1;
+    padding: 0;
+}
+
+.refreshButton:active,
+.refreshButton:focus,
+.refreshButton:hover {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;    
+}
+
+.refreshButtonIcon {
+    line-height: inherit;
+}
+
+.refreshButtonIconLoading {
+    animation: spin 100ms linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+  }

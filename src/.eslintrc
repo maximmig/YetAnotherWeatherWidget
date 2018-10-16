@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "root": true,
+  "extends": [
+    "@jetbrains",
+    "@jetbrains/eslint-config/es6",
+    "@jetbrains/eslint-config/browser",
+    "@jetbrains/eslint-config/react",
+    "@jetbrains/eslint-config/test"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "dot-location": ["error", "property"],
+    "max-len": ["error", { "code": 120 }],
+    "new-cap": ["error", { "capIsNew": false }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "quotes": ["error", "single"]
+  }
+}

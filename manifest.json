@@ -1,0 +1,11 @@
+{
+  "key": "yet-another-weather-widget",
+  "name": "Yet another weather widget",
+  "version": "1.0.0",
+  "description": "Nuff said",
+  "author": "Maxim Mig",
+  "products": {
+    "Hub": "2018.2",
+    "YouTrack": "2018.2"
+  }
+}

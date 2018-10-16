@@ -1,0 +1,23 @@
+:root {
+    --header-margin: 1.4em;
+}
+
+.header {
+    font-size: 1em;
+    line-height: 1;
+    margin-bottom: var(--header-margin);
+    position: relative;
+}
+
+.header::after {
+    border: 1px #eee outset;
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    transform: translateY(calc(var(--header-margin)/2));
+    width: 100%;
+}
+
+h1.headerText { /* for the sake of increasing of specifity */
+    margin: 0;
+}

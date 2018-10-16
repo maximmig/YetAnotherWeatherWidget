@@ -1,0 +1,33 @@
+:root {
+    --temperature-margin: 5px;
+}
+
+.tempRange {
+    font-size: 3em;
+    line-height: 1;
+}
+
+.tempEdge {
+    opacity: .6;
+    font-size: .6em;
+}
+
+.minTemp {
+    color: #008;
+    margin-right: var(--temperature-margin);
+}
+
+.minTemp::before {
+    color: currentColor;
+    content: '↓';
+}
+
+.maxTemp {
+    color: #800;
+    margin-left: var(--temperature-margin);
+}
+
+.maxTemp::after {
+    color: currentColor;
+    content: '↑';
+}

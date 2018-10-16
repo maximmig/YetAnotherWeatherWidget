@@ -1,0 +1,34 @@
+.currentConditions {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mainConditions {
+    align-items: center;
+    display: flex;
+    flex-basis: 60%;
+    margin: .8em 0 0; 
+}
+
+.mainConditionsIcon {
+    display: inline-flex;
+}
+
+.mainConditionsTemp {
+    flex-grow: 1;
+    margin-left: 1em;
+}
+
+.conditionsDescription {
+    flex-basis: 24%;
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 2.2;
+}
+
+.conditionsOther {
+    flex-basis: 8%;
+    font-size: 1em;
+    line-height: 1.6;
+}

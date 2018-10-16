@@ -1,0 +1,15 @@
+.dailyForecast {
+  align-items: flex-start;
+  display: flex;
+  padding: 1em 0 .4em;
+}
+
+.hourlyForecast {
+  flex-basis: calc(100%/8);
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.futureForecast {
+  opacity: .7;
+}

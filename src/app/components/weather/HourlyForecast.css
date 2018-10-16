@@ -1,0 +1,21 @@
+:root {
+    --forecast-icon-size: 2.8em;
+}
+
+.forecast {
+    align-items: center;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.forecastIcon {
+    height: var(--forecast-icon-size);
+    margin-bottom: -.5em;
+    margin-top: -.3em;
+    width: var(--forecast-icon-size);
+}
+
+.forecastTime {
+    white-space: nowrap;
+}
