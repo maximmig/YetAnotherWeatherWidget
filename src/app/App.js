@@ -2,7 +2,7 @@ import DashboardAddons from 'hub-dashboard-addons';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {render} from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {Provider, connect} from 'react-redux';
 import thunk from 'redux-thunk';
 import classnames from 'classnames';
@@ -22,16 +22,11 @@ import {
   CurrentConditions,
 } from './components/weather';
 
-import combinedReducer, {getFilteredForecasts} from './reducers';
-import {
-  readConfigSucceeded,
-  editConfigStarted,
-  editConfigSucceeded,
-  editConfigCanceled,
-  fetchWeather,
-  filterForecast,
-  stopAutoRefresh,
-} from './actions';
+import weatherReducer from './redux-modules/weather';
+import configReducer from './redux-modules/config';
+import * as weatherActions from './redux-modules/weather/actions';
+import * as configActions from './redux-modules/config/actions';
+import {getFilteredForecasts} from './redux-modules/weather/selectors';
 
 import {UNITS, FORECAST_FILTERS} from './constants';
 import {
@@ -72,7 +67,7 @@ class Widget extends Component {
 
     props.registerWidgetApi({
       onConfigure: () => {
-        this.props.dispatch(editConfigStarted());
+        this.props.dispatch(configActions.editConfigStarted());
       },
     });
   }
@@ -87,18 +82,18 @@ class Widget extends Component {
         selectedLocation,
         selectedUnits,
       } = config;
-      this.props.dispatch(readConfigSucceeded(selectedLocation, selectedUnits));
-      this.props.dispatch(fetchWeather(selectedLocation, selectedUnits));
+      this.props.dispatch(configActions.readConfigSucceeded(selectedLocation, selectedUnits));
+      this.props.dispatch(weatherActions.fetchWeather(selectedLocation, selectedUnits));
     });
   }
 
   componentWillUnmount() {
-    this.props.dispatch(stopAutoRefresh());
+    this.props.dispatch(weatherActions.stopAutoRefresh());
   }
 
   handleSaveConfig = (selectedLocation, selectedUnits) => {
-    this.props.dispatch(editConfigSucceeded(selectedLocation, selectedUnits));
-    this.props.dispatch(fetchWeather(selectedLocation, selectedUnits));
+    this.props.dispatch(configActions.editConfigSucceeded(selectedLocation, selectedUnits));
+    this.props.dispatch(weatherActions.fetchWeather(selectedLocation, selectedUnits));
     this.props.dashboardApi.storeConfig({selectedLocation, selectedUnits})
       .catch(error => {
         console.warn('Failed to store config: %o', error);
@@ -106,12 +101,12 @@ class Widget extends Component {
   };
 
   handleCancelConfig = () => {
-    this.props.dispatch(editConfigCanceled());
+    this.props.dispatch(configActions.editConfigCanceled());
     this.props.dashboardApi.exitConfigMode();
   };
 
   handleSelectTab = selectedTab => {
-    this.props.dispatch(filterForecast(selectedTab));
+    this.props.dispatch(weatherActions.filterForecasts(selectedTab));
   }
 
   handleRefresh = () => {
@@ -120,7 +115,7 @@ class Widget extends Component {
       selectedUnits,
     } = this.props;
 
-    this.props.dispatch(fetchWeather(selectedLocation, selectedUnits));
+    this.props.dispatch(weatherActions.fetchWeather(selectedLocation, selectedUnits));
   }
 
   renderConfig() {
@@ -282,14 +277,13 @@ class Widget extends Component {
   }
 }
 
+const combinedReducer = combineReducers({
+  weather: weatherReducer,
+  config: configReducer,
+});
+
 DashboardAddons.registerWidget((dashboardApi, registerWidgetApi) => {
   const store = createStore(combinedReducer, applyMiddleware(thunk));
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
-      const hotRootReducer = require('./reducers').default;
-      store.replaceReducer(hotRootReducer);
-    });
-  }
   const mapStateToProps = state => ({
     isLoading: state.weather.isLoading,
     error: state.weather.error,
