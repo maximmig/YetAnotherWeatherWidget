@@ -29,7 +29,7 @@
 
 :global(.widget-body) {
   box-sizing: border-box;
-  height: 100%; 
+  height: 100%;
   padding: calc(unit * 2);
 }
 
@@ -41,7 +41,7 @@
 .widget {
   display: flex;
   flex-direction: column;
-  height: 100%;  
+  height: 100%;
 }
 
 .widgetTabs {

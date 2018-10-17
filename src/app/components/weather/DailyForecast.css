@@ -5,7 +5,7 @@
 }
 
 .hourlyForecast {
-  flex-basis: calc(100%/8);
+  flex-basis: calc(100% / 8);
   margin-bottom: auto;
   margin-top: auto;
 }

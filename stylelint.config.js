@@ -1,4 +1,6 @@
 module.exports = {
   extends: '@jetbrains/stylelint-config',
-  rules: {}
+  rules: {
+    'number-leading-zero': 'never'
+  }
 };
