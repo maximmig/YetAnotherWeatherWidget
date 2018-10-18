@@ -7,5 +7,10 @@
   "products": {
     "Hub": "2018.2",
     "YouTrack": "2018.2"
+  },
+  "view": {
+    "fadeOut": false,
+    "defaultWidth": 5,
+    "defaultHeight": 3
   }
 }

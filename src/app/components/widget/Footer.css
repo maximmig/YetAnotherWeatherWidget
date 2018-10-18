@@ -1,12 +1,11 @@
 :root {
-  --footer-margin: 1.4em;
+  --footer-margin: 1.6em;
 }
 
 .footer {
   font-size: .85em;
   font-weight: 500;
   line-height: 1em;
-  margin-bottom: .5em;
   margin-top: var(--footer-margin);
   position: relative;
 }
