@@ -40,11 +40,13 @@ const Weather = ({weather, selectedUnits, className}) => {
         {`${currentWeather.main} (${currentWeather.description})`}
       </div>
       <div className={styles.conditionsOther}>
-        {`wind ${weather.wind.speed} ${units.wind}`} {weather.wind.deg != null &&
-          <WindDirection deg={weather.wind.deg}/>}
-      </div>
-      <div className={styles.conditionsOther}>
-        {`☼↑ ${sunriseTime} - ☼↓ ${sunsetTime}`}
+        <div>
+          {`wind ${weather.wind.speed} ${units.wind}`} {weather.wind.deg != null &&
+            <WindDirection deg={weather.wind.deg}/>}
+        </div>
+        <div>
+          {`☼↑ ${sunriseTime} - ☼↓ ${sunsetTime}`}
+        </div>
       </div>
     </div>
   );

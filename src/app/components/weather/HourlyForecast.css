@@ -12,10 +12,11 @@
 .forecastIcon {
   height: var(--forecast-icon-size);
   margin-bottom: -.5em;
-  margin-top: -.3em;
+  margin-top: -.2em;
   width: var(--forecast-icon-size);
 }
 
 .forecastTime {
+  line-height: 1;
   white-space: nowrap;
 }

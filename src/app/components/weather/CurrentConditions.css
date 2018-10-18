@@ -21,14 +21,12 @@
 }
 
 .conditionsDescription {
-  flex-basis: 24%;
+  flex-basis: 26%;
   font-size: 1.1em;
   font-weight: 600;
-  line-height: 2.2;
 }
 
 .conditionsOther {
-  flex-basis: 8%;
+  flex-basis: 14%;
   font-size: 1em;
-  line-height: 1.6;
 }
