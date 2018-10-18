@@ -3,6 +3,7 @@ const UNITS = {
     name: 'metric',
     temp: '°C',
     wind: 'm/s',
+    dateTimeFormat: 'dddd, MMMM DD, H:mm',
     dateFormat: 'dddd, MMMM DD',
     timeFormat: 'H:mm',
     timeFormatTz: 'H:mm (z)',
@@ -11,8 +12,9 @@ const UNITS = {
     name: 'imperial',
     temp: '°F',
     wind: 'mph',
+    dateTimeFormat: 'dddd, MMMM DD, h:mm A',
     dateFormat: 'dddd, MMMM DD',
-    timeFormat: 'h:mm A',
+    timeFormat: 'h A',
     timeFormatTz: 'h:mm A (z)',
   },
 };

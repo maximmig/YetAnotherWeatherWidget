@@ -166,7 +166,7 @@ class Widget extends Component {
 
     return (
       <React.Fragment>
-        <H3>{`${formatTime(weather.dt, units.dateFormat)}, ${formatTime(weather.dt, units.timeFormat)}`}</H3>
+        <H3>{formatTime(weather.dt, units.dateTimeFormat)}</H3>
         <CurrentConditions
           weather={weather}
           selectedUnits={selectedUnits}
