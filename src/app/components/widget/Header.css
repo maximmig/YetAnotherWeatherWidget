@@ -20,4 +20,7 @@
 
 h1.headerText { /* for the sake of increasing of specifity */
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
