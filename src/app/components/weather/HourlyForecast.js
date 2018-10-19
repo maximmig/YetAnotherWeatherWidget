@@ -13,7 +13,7 @@ import styles from './HourlyForecast.css';
 const HourlyForecast = ({forecast, selectedUnits, className}) => {
   const weather = forecast.weather[0];
   const units = UNITS[selectedUnits];
-  const time = formatTime(forecast.dt, units.timeFormat);
+  const time = formatTime(forecast.dt, units.shortTimeFormat);
 
   return (
     <div className={classnames(styles.forecast, className)}>
