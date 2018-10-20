@@ -20,6 +20,7 @@ const HourlyForecast = ({forecast, selectedUnits, className}) => {
       <Temperature
         selectedUnits={selectedUnits}
         temp={forecast.main.temp}
+        className={styles.forecastTemp}
       />
       <WeatherIcon
         id={weather.icon}

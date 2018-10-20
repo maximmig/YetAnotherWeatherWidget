@@ -10,7 +10,7 @@
   },
   "view": {
     "fadeOut": false,
-    "defaultWidth": 4,
+    "defaultWidth": 2,
     "defaultHeight": 3
   }
 }

@@ -1,3 +1,7 @@
+@import "../../variables.css";
+
+@value s-screen-width, s-screen-height from "../../variables.css";
+
 .currentConditions {
   display: flex;
   flex-direction: column;
@@ -8,6 +12,18 @@
   align-items: center;
   display: flex;
   flex: 0 0 60%;
+
+  @media s-screen-height {
+    & {
+      flex-basis: 100%;
+    }
+  }
+
+  @media s-screen-width {
+    & {
+      flex-basis: 50%;
+    }
+  }
 }
 
 .mainConditionsIcon {
@@ -17,15 +33,56 @@
 .mainConditionsTemp {
   flex-grow: 1;
   margin-left: 1em;
+
+  @media s-screen-width {
+    & {
+      flex-grow: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+.mainConditionsIcon,
+.mainConditionsTemp {
+  @media s-screen-width {
+    & {
+      flex-basis: 50%;
+      margin-bottom: auto;
+      margin-top: auto;
+    }
+  }
 }
 
 .conditionsDescription {
-  flex-basis: 26%;
+  flex-basis: 20%;
   font-size: 1.1em;
   font-weight: 600;
 }
 
 .conditionsOther {
-  flex-basis: 14%;
+  flex-basis: 20%;
   font-size: 1em;
+}
+
+.conditionsDescription,
+.conditionsOther {
+  @media s-screen-height {
+    & {
+      display: none;
+    }
+  }
+
+  @media s-screen-width {
+    & {
+      flex-basis: 25%;
+    }
+  }
+}
+
+.conditionsOtherSun {
+  @media m-screen-height {
+    & {
+      display: none;
+    }
+  }
 }

@@ -1,6 +1,6 @@
-:root {
-  --temperature-margin: 5px;
-}
+@import "../../variables.css";
+
+@value s-screen-width from "../../variables.css";
 
 .tempRange {
   font-size: 3em;
@@ -14,7 +14,7 @@
 
 .minTemp {
   color: #008;
-  margin-right: var(--temperature-margin);
+  margin-right: var(--min-max-temperature-margin);
 }
 
 .minTemp::before {
@@ -24,10 +24,19 @@
 
 .maxTemp {
   color: #800;
-  margin-left: var(--temperature-margin);
+  margin-left: var(--min-max-temperature-margin);
 }
 
 .maxTemp::after {
   color: currentColor;
   content: '↑';
+}
+
+.minTemp,
+.maxTemp {
+  & {
+    @media s-screen-width {
+      display: none;
+    }
+  }
 }

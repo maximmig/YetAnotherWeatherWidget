@@ -15,13 +15,13 @@ const ExtendedHourlyForecast = ({forecast, selectedUnits}) => {
   const weather = forecast.weather[0];
   const {wind} = forecast;
   const units = UNITS[selectedUnits];
-  const time = formatTime(forecast.dt, units.timeFormat);
+  const time = formatTime(forecast.dt, units.shortTimeFormat);
 
   return (
     <div className={styles.extendedForecast}>
       <div className={styles.extendedForecastDescription}>
         <div className={styles.extendedForecastTimeDescription}>{time}</div>
-        <div>{weather.description}</div>
+        <div className={styles.extendedForecastConditionsDescription}>{weather.description}</div>
       </div>
       <div className={styles.extendedForecastIcon}>
         <WeatherIcon

@@ -1,6 +1,4 @@
-:root {
-  --header-margin: 1.4em;
-}
+@import "../../variables.css";
 
 .header {
   font-size: 1em;

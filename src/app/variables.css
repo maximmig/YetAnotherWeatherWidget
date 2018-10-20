@@ -1,0 +1,14 @@
+
+/* Media queries */
+@value s-screen-width: (max-width: 178px);
+@value m-screen-width: (178px < width <= 372px);
+@value s-screen-height: (max-height: 144px);
+@value m-screen-height: (144px < height <= 304px);
+
+:root {
+  --header-margin: 1.4em;
+  --footer-margin: 1.6em;
+  --min-max-temperature-margin: 5px;
+  --weather-icon-size: 50px;
+  --forecast-icon-size: 2.8em;
+}

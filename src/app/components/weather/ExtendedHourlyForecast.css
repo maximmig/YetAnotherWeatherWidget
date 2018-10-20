@@ -1,12 +1,35 @@
+@value s-screen-width from "../../variables.css";
+
 .extendedForecast {
   align-items: center;
   display: flex;
   padding-left: 1ch;
   padding-right: 1ch;
+
+  @media s-screen-width {
+    & {
+      padding-left: unset;
+    }
+  }
 }
 
 .extendedForecastDescription {
   flex-basis: 55%;
+
+  @media s-screen-width {
+    & {
+      flex-basis: auto;
+      flex-grow: 1;
+    }
+  }
+}
+
+.extendedForecastConditionsDescription {
+  @media s-screen-width {
+    & {
+      display: none;
+    }
+  }
 }
 
 .extendedForecastTimeDescription,
@@ -25,7 +48,23 @@
   text-align: right;
 }
 
+.extendedForecastDescription,
+.extendedForecastIcon,
+.extendedForecastTemp {
+  @media s-screen-width {
+    & {
+      flex-basis: auto;
+    }
+  }
+}
+
 .extendedForecastWind {
   flex-basis: 15%;
   text-align: right;
+
+  @media s-screen-width {
+    & {
+      display: none;
+    }
+  }
 }

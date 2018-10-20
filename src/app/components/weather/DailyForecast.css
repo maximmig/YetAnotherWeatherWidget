@@ -1,7 +1,16 @@
+@value s-screen-width from "../../variables.css";
+
 .dailyForecast {
   align-items: flex-start;
   display: flex;
+  font-size: 1em;
   padding: .4em 0;
+
+  @media s-screen-width {
+    & {
+      display: none !important;
+    }
+  }
 }
 
 .hourlyForecast {

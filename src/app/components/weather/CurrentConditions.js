@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import {TIME_ZONES, UNITS} from '../../constants';
+import {UNITS} from '../../constants';
 import {formatTime} from '../../helpers';
 
 import WeatherIcon from './WeatherIcon';
@@ -13,10 +13,9 @@ import styles from './CurrentConditions.css';
 
 const Weather = ({weather, selectedUnits, className}) => {
   const units = UNITS[selectedUnits];
-  const selectedTimezone = TIME_ZONES[weather.id];
   const currentWeather = weather.weather[0];
-  const sunriseTime = formatTime(weather.sys.sunrise, units.timeFormatTz, selectedTimezone);
-  const sunsetTime = formatTime(weather.sys.sunset, units.timeFormatTz, selectedTimezone);
+  const sunriseTime = formatTime(weather.sys.sunrise, units.timeFormat);
+  const sunsetTime = formatTime(weather.sys.sunset, units.timeFormat);
 
   return (
     <div className={classnames(styles.currentConditions, className)}>
@@ -44,8 +43,8 @@ const Weather = ({weather, selectedUnits, className}) => {
           {`wind ${weather.wind.speed} ${units.wind}`} {weather.wind.deg != null &&
             <WindDirection deg={weather.wind.deg}/>}
         </div>
-        <div>
-          {`☼↑ ${sunriseTime} - ☼↓ ${sunsetTime}`}
+        <div className={styles.conditionsOtherSun}>
+          {`☼↑ ${sunriseTime} ☼↓ ${sunsetTime}`}
         </div>
       </div>
     </div>

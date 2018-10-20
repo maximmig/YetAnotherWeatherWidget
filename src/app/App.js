@@ -166,8 +166,11 @@ class Widget extends Component {
 
     return (
       <React.Fragment>
-        <H3>
-          {formatTime(weather.dt, units.dateFormat)}<span>{`, ${formatTime(weather.dt, units.timeFormat)}`}</span>
+        <H3 className={styles.todayTabTime}>
+          {formatTime(weather.dt, units.dateFormat)}
+          <span className={styles.todayTabCurrentConditionsTime}>
+            {`, ${formatTime(weather.dt, units.timeFormat)}`}
+          </span>
         </H3>
         <CurrentConditions
           weather={weather}
@@ -193,7 +196,7 @@ class Widget extends Component {
 
     return (
       <React.Fragment>
-        <H3>{formatTime(forecastList[0].dt, units.dateFormat)}</H3>
+        <H3 className={styles.tomorrowTabTime}>{formatTime(forecastList[0].dt, units.dateFormat)}</H3>
         {
           forecastList.map(f => (
             <ExtendedHourlyForecast
@@ -219,7 +222,7 @@ class Widget extends Component {
     return forecastList.reduce((acc, f) => {
       if (prevDate === null || !isSameDay(prevDate, f.dt)) {
         prevDate = f.dt;
-        acc.push(<H3 key={`heading_${prevDate}`}>{formatTime(f.dt, units.dateFormat)}</H3>);
+        acc.push(<H3 className={styles.fiveDaysTabTime} key={`heading_${prevDate}`}>{formatTime(f.dt, units.dateFormat)}</H3>);
         dailyForecast = (
           <DailyForecast
             key={`forecast_${prevDate}`}
@@ -255,7 +258,7 @@ class Widget extends Component {
 
     return (
       <div className={classnames(styles.widget, styles.widgetStructure)}>
-        <Header city={weather.name}/>
+        <Header city={weather.name} className={styles.locationHeader}/>
         <Tabs selected={forecastFilter} onSelect={this.handleSelectTab} className={styles.widgetTabs}>
           <Tab id={FORECAST_FILTERS.TWENTY_FOUR_HOURS} title="Today" className={styles.todayTab}>
             {forecastFilter === FORECAST_FILTERS.TWENTY_FOUR_HOURS && this.renderTodayTabContent()}

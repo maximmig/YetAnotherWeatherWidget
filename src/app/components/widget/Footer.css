@@ -1,6 +1,4 @@
-:root {
-  --footer-margin: 1.6em;
-}
+@import "../../variables.css";
 
 .footer {
   font-size: .85em;
