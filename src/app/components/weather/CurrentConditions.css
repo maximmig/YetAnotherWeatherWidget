@@ -44,11 +44,12 @@
 
 .mainConditionsIcon,
 .mainConditionsTemp {
+  margin-bottom: auto;
+  margin-top: auto;
+
   @media s-screen-width {
     & {
       flex-basis: 50%;
-      margin-bottom: auto;
-      margin-top: auto;
     }
   }
 }

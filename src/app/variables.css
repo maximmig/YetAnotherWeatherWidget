@@ -1,9 +1,16 @@
 
+@value growFactor: 1.2;
+
+@value sWidth: 178px;
+@value mWidth: 372px;
+@value sHeight: 144px;
+@value mHeight: 304px;
+
 /* Media queries */
-@value s-screen-width: (max-width: 178px);
-@value m-screen-width: (178px < width <= 372px);
-@value s-screen-height: (max-height: 144px);
-@value m-screen-height: (144px < height <= 304px);
+@value s-screen-width: (max-width: calc(sWidth * growFactor));
+@value m-screen-width: (calc(sWidth * growFactor) < width <= calc(mWidth * growFactor));
+@value s-screen-height: (max-height: calc(sHeight * growFactor));
+@value m-screen-height: (calc(sHeight * growFactor) < height <= calc(mHeight * growFactor));
 
 :root {
   --header-margin: 1.4em;
