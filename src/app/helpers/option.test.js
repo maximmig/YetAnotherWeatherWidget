@@ -9,7 +9,7 @@ describe('Option', () => {
     Option(label).should.be.instanceOf(Option);
   });
 
-  it('key is equal to label if omitted', () => {
+  it('ensures key is equal to label if omitted', () => {
     Option(label).key.should.be.equal(label);
   });
 
