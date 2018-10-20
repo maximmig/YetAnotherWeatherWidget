@@ -5,12 +5,6 @@
   display: flex;
   padding-left: 1ch;
   padding-right: 1ch;
-
-  @media s-screen-width {
-    & {
-      padding-left: unset;
-    }
-  }
 }
 
 .extendedForecastDescription {
