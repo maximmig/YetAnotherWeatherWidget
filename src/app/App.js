@@ -84,6 +84,7 @@ class Widget extends Component {
       } = config;
       this.props.dispatch(configActions.readConfigSucceeded(selectedLocation, selectedUnits));
       this.props.dispatch(weatherActions.fetchWeather(selectedLocation, selectedUnits));
+      this.props.dispatch(weatherActions.startAutoRefresh(selectedLocation, selectedUnits));
     });
   }
 
@@ -93,7 +94,9 @@ class Widget extends Component {
 
   handleSaveConfig = (selectedLocation, selectedUnits) => {
     this.props.dispatch(configActions.editConfigSucceeded(selectedLocation, selectedUnits));
+    this.props.dispatch(weatherActions.stopAutoRefresh());
     this.props.dispatch(weatherActions.fetchWeather(selectedLocation, selectedUnits));
+    this.props.dispatch(weatherActions.startAutoRefresh(selectedLocation, selectedUnits));
     this.props.dashboardApi.storeConfig({selectedLocation, selectedUnits})
       .catch(error => {
         console.warn('Failed to store config: %o', error);
@@ -115,7 +118,9 @@ class Widget extends Component {
       selectedUnits,
     } = this.props;
 
+    this.props.dispatch(weatherActions.stopAutoRefresh());
     this.props.dispatch(weatherActions.fetchWeather(selectedLocation, selectedUnits));
+    this.props.dispatch(weatherActions.startAutoRefresh(selectedLocation, selectedUnits));
   }
 
   renderConfig() {
@@ -222,7 +227,11 @@ class Widget extends Component {
     return forecastList.reduce((acc, f) => {
       if (prevDate === null || !isSameDay(prevDate, f.dt)) {
         prevDate = f.dt;
-        acc.push(<H3 className={styles.fiveDaysTabTime} key={`heading_${prevDate}`}>{formatTime(f.dt, units.dateFormat)}</H3>);
+        acc.push(
+          <H3 className={styles.fiveDaysTabTime} key={`heading_${prevDate}`}>
+            {formatTime(f.dt, units.dateFormat)}
+          </H3>
+        );
         dailyForecast = (
           <DailyForecast
             key={`forecast_${prevDate}`}

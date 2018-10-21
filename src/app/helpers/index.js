@@ -1,4 +1,4 @@
-import loadWeatherAndForecast from './open-weather-map';
+import {loadWeatherAndForecast} from './open-weather-map';
 import Option from './option';
 import {
   formatTime,

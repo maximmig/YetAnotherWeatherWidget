@@ -27,15 +27,10 @@ export const fetchWeatherStarted = () => ({
 });
 
 export const fetchWeather = (selectedLocation, selectedUnits) => dispatch => {
-  window.clearTimeout(fetchWeatherTimeoutId);
-  fetchWeatherTimeoutId = window.setTimeout(() => {
-    fetchWeather(selectedLocation, selectedUnits);
-  }, UPDATE_INTERVAL);
-
   dispatch(fetchWeatherStarted());
-  loadWeatherAndForecast(selectedLocation, selectedUnits)
-    .then(([weather, forecasts]) => {
-      dispatch(fetchWeatherSucceeded(weather, forecasts, now()));
+  return loadWeatherAndForecast(selectedLocation, selectedUnits)
+    .then(([weather, forecast]) => {
+      dispatch(fetchWeatherSucceeded(weather, forecast, now()));
     }).catch(error => {
       dispatch(fetchWeatherFailed(error));
     });
@@ -47,6 +42,15 @@ export const filterForecasts = filter => ({
     filter,
   },
 });
+
+export const startAutoRefresh = (selectedLocation, selectedUnits) => {
+  fetchWeatherTimeoutId = window.setTimeout(() => {
+    fetchWeather(selectedLocation, selectedUnits);
+  }, UPDATE_INTERVAL);
+  return {
+    type: types.AUTO_REFRESH_START,
+  };
+};
 
 export const stopAutoRefresh = () => {
   window.clearTimeout(fetchWeatherTimeoutId);

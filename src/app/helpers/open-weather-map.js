@@ -26,11 +26,9 @@ const load = async (what, location, units) => {
   }
 };
 
-const loadWeather = async (location, units) => await load('weather', location, units);
+export const loadWeather = async (location, units) => await load('weather', location, units);
 
-const loadForecast = async (location, units) => await load('forecast', location, units);
+export const loadForecast = async (location, units) => await load('forecast', location, units);
 
-const loadWeatherAndForecast = (selectedLocation, selectedUnits) =>
+export const loadWeatherAndForecast = (selectedLocation, selectedUnits) =>
   Promise.all([loadWeather(selectedLocation, selectedUnits), loadForecast(selectedLocation, selectedUnits)]);
-
-export default loadWeatherAndForecast;
