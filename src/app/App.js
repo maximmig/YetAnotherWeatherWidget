@@ -298,15 +298,19 @@ const combinedReducer = combineReducers({
 
 DashboardAddons.registerWidget((dashboardApi, registerWidgetApi) => {
   const store = createStore(combinedReducer, applyMiddleware(thunk));
-  const mapStateToProps = state => ({
-    isLoading: state.weather.isLoading,
-    error: state.weather.error,
-    weather: state.weather.weather,
-    forecastFilter: state.weather.forecastFilter,
-    lastUpdateTime: state.weather.lastUpdateTime,
-    forecastList: getFilteredForecasts(state.weather.forecastList, state.weather.forecastFilter, state.weather.dt),
-    ...state.config,
-  });
+  const mapStateToProps = state => {
+    const {weather} = state;
+    const today = weather.weather ? weather.weather.dt : null;
+    return {
+      isLoading: weather.isLoading,
+      error: weather.error,
+      weather: weather.weather,
+      forecastFilter: weather.forecastFilter,
+      lastUpdateTime: weather.lastUpdateTime,
+      forecastList: getFilteredForecasts(weather.forecastList, weather.forecastFilter, today),
+      ...state.config,
+    };
+  };
   const ConnectedWidget = connect(mapStateToProps)(Widget);
 
   render(

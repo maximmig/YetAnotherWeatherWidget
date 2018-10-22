@@ -9,13 +9,28 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.READ_CONFIG_SUCCEEDED:
-      return Object.assign({}, state, action.payload);
+      return {
+        ...state,
+        selectedLocation: action.payload.selectedLocation,
+        selectedUnits: action.payload.selectedUnits,
+      };
     case types.EDIT_CONFIG_STARTED:
-      return Object.assign({}, state, {isConfiguring: true});
+      return {
+        ...state,
+        isConfiguring: true,
+      };
     case types.EDIT_CONFIG_SUCCEEDED:
-      return Object.assign({}, state, action.payload, {isConfiguring: false});
+      return {
+        ...state,
+        isConfiguring: false,
+        selectedLocation: action.payload.selectedLocation,
+        selectedUnits: action.payload.selectedUnits,
+      };
     case types.EDIT_CONFIG_CANCELED:
-      return Object.assign({}, state, {isConfiguring: false});
+      return {
+        ...state,
+        isConfiguring: false,
+      };
     default:
       return state;
   }

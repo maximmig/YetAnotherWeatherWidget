@@ -37,4 +37,19 @@ describe('weather reducer', () => {
     };
     expect(weatherReducer(initialState, action)).toEqual(expectedState);
   });
+
+  it(`should handle ${types.FETCH_WEATHER_FAILED} action`, () => {
+    const action = {
+      type: types.FETCH_WEATHER_FAILED,
+      payload: {
+        error: {message: 'Failed to fetch weather'},
+      },
+    };
+    const expectedState = {
+      ...initialState,
+      isLoading: false,
+      error: action.payload.error.message,
+    };
+    expect(weatherReducer(initialState, action)).toEqual(expectedState);
+  });
 });
