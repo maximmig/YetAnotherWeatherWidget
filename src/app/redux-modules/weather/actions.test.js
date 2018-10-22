@@ -3,9 +3,16 @@ import thunk from 'redux-thunk';
 
 import * as types from './types';
 
-import {fetchWeatherSucceeded, fetchWeather} from './actions';
+import {
+  fetchWeatherSucceeded,
+  fetchWeather,
+  startAutoRefresh,
+  stopAutoRefresh,
+  UPDATE_INTERVAL,
+} from './actions';
 
-const mockStore = configureMockStore([thunk]);
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 const mockWeather = {weather: 'weather'};
 const mockForecast = {forecast: 'forecast'};
 const mockLastUpdateTime = 1000;
@@ -51,5 +58,35 @@ describe('fetchWeather', () => {
       expect(helpers.loadWeatherAndForecast).toHaveBeenCalled();
       expect(helpers.now).toHaveBeenCalled();
     });
+  });
+});
+
+describe('auto refresh', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
+  it('can start auto refresh', () => {
+    const expectedActions = [{type: types.AUTO_REFRESH_START}];
+    const initialState = {};
+    const store = mockStore(initialState);
+    store.dispatch(startAutoRefresh());
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(setInterval).toHaveBeenCalledTimes(1);
+    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), UPDATE_INTERVAL);
+  });
+
+  it('can stop auto refresh', () => {
+    const expectedActions = [{type: types.AUTO_REFRESH_STOP}];
+    const initialState = {};
+    const store = mockStore(initialState);
+    store.dispatch(stopAutoRefresh());
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(clearInterval).toHaveBeenCalledTimes(1);
+    expect(clearInterval).toHaveBeenLastCalledWith(expect.any(Number));
   });
 });

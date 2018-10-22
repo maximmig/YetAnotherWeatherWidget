@@ -2,9 +2,9 @@ import {loadWeatherAndForecast, now} from '../../helpers';
 
 import * as types from './types';
 
-const UPDATE_INTERVAL = 3600000; // 1 hour
+export const UPDATE_INTERVAL = 3600000; // 1 hour
 
-let fetchWeatherTimeoutId = null;
+let fetchWeatherIntervalId = null;
 
 export const fetchWeatherSucceeded = (weather, forecast, lastUpdateTime) => ({
   type: types.FETCH_WEATHER_SUCCEEDED,
@@ -44,7 +44,7 @@ export const filterForecasts = filter => ({
 });
 
 export const startAutoRefresh = (selectedLocation, selectedUnits) => {
-  fetchWeatherTimeoutId = window.setTimeout(() => {
+  fetchWeatherIntervalId = window.setInterval(() => {
     fetchWeather(selectedLocation, selectedUnits);
   }, UPDATE_INTERVAL);
   return {
@@ -53,7 +53,7 @@ export const startAutoRefresh = (selectedLocation, selectedUnits) => {
 };
 
 export const stopAutoRefresh = () => {
-  window.clearTimeout(fetchWeatherTimeoutId);
+  window.clearInterval(fetchWeatherIntervalId);
   return {
     type: types.AUTO_REFRESH_STOP,
   };

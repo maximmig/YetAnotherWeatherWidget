@@ -2,7 +2,7 @@ import {FORECAST_FILTERS} from '../../constants';
 
 import * as types from './types';
 
-const initialState = {
+export const initialState = {
   isLoading: false,
   error: null,
   weather: null,
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case types.FETCH_WEATHER_STARTED:
       return Object.assign({}, state, {isLoading: true});
     case types.FETCH_WEATHER_SUCCEEDED:
-      return Object.assign({}, state, action.payload, {
+      return Object.assign({}, state, {
         isLoading: false,
         error: null,
         weather: action.payload.weather,
