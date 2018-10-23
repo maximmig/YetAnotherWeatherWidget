@@ -70,7 +70,7 @@ describe('auto refresh', () => {
     jest.clearAllTimers();
   });
 
-  it('can start auto refresh', () => {
+  it('can start', () => {
     const expectedActions = [{type: types.AUTO_REFRESH_START}];
     const initialState = {};
     const store = mockStore(initialState);
@@ -80,7 +80,7 @@ describe('auto refresh', () => {
     expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), UPDATE_INTERVAL);
   });
 
-  it('can stop auto refresh', () => {
+  it('can stop', () => {
     const expectedActions = [{type: types.AUTO_REFRESH_STOP}];
     const initialState = {};
     const store = mockStore(initialState);
