@@ -70,11 +70,15 @@ describe('forecasts selector', () => {
       .toEqual(expectedForecasts);
   });
 
-  it('should memoize filter results', () => {
-    const filters = [{
+  it('should memoize filter results and not recompute them when called with previous filters', () => {
+    const uniqueFilters = [{
       forecastList,
       forecastFilter: FORECAST_FILTERS.FIVE_DAYS,
       today: forecastList[0].dt,
+    }, {
+      forecastList,
+      forecastFilter: FORECAST_FILTERS.FIVE_DAYS,
+      today: forecastList[1].dt,
     }, {
       forecastList,
       forecastFilter: FORECAST_FILTERS.TOMORROW,
@@ -87,16 +91,13 @@ describe('forecasts selector', () => {
       forecastList: forecastList.slice(0),
       forecastFilter: FORECAST_FILTERS.TWENTY_FOUR_HOURS,
       today: forecastList[0].dt,
-    }, {
-      forecastList,
-      forecastFilter: FORECAST_FILTERS.TWENTY_FOUR_HOURS,
-      today: forecastList[1].dt,
     }];
-    for (let i = 0; i < filters.length; i++) {
-      const filter = filters[i];
+    for (let i = 0; i < uniqueFilters.length; i++) {
+      const filter = uniqueFilters[i];
       const computationCount = i + 1;
       getFilteredForecasts(filter.forecastList, filter.forecastFilter, filter.today);
       expect(getFilteredForecasts.recomputations()).toEqual(computationCount);
+      // should not increase recomputation count
       getFilteredForecasts(filter.forecastList, filter.forecastFilter, filter.today);
       expect(getFilteredForecasts.recomputations()).toEqual(computationCount);
     }
