@@ -37,7 +37,7 @@ import {
 import 'file-loader?name=[name].[ext]!../../manifest.json'; // eslint-disable-line import/no-unresolved
 import styles from './App.css';
 
-class Widget extends Component {
+export class Widget extends Component {
   static propTypes = {
     dashboardApi: PropTypes.object.isRequired,
     registerWidgetApi: PropTypes.func.isRequired,
