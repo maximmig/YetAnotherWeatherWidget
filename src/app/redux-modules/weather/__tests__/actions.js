@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import * as types from './types';
+import * as types from '../types';
 
 import {
   fetchWeatherSucceeded,
@@ -9,7 +9,7 @@ import {
   startAutoRefresh,
   stopAutoRefresh,
   UPDATE_INTERVAL,
-} from './actions';
+} from '../actions';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -17,11 +17,11 @@ const mockWeather = {weather: 'weather'};
 const mockForecast = {forecast: 'forecast'};
 const mockLastUpdateTime = 1000;
 
-jest.mock('../../helpers', () => ({
+jest.mock('../../../helpers', () => ({
   loadWeatherAndForecast: jest.fn(() => new Promise((resolve, reject) => resolve([mockWeather, mockForecast]))),
   now: jest.fn(() => mockLastUpdateTime),
 }));
-const helpers = require('../../helpers');
+const helpers = require('../../../helpers');
 
 describe('fetchWeatherSucceeded', () => {
   it('works', () => {

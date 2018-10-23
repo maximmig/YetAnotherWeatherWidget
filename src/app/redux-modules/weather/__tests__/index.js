@@ -1,6 +1,6 @@
-import * as types from './types';
+import * as types from '../types';
 
-import weatherReducer, {initialState} from './';
+import weatherReducer, {initialState} from '..';
 
 describe('weather reducer', () => {
   it('should return initial state', () => {

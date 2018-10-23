@@ -1,6 +1,6 @@
-import {FORECAST_FILTERS} from '../../constants';
+import {FORECAST_FILTERS} from '../../../constants';
 
-import {getFilteredForecasts, DAILY_FORECAST_COUNT} from './selectors';
+import {getFilteredForecasts, DAILY_FORECAST_COUNT} from '../selectors';
 
 describe('forecasts selector', () => {
   const forecastList = [
