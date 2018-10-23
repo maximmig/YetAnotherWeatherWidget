@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TemperatureRange component should match the last snapshot with average temperature only 1`] = `
+<div
+  className="tempRange"
+>
+  <Temperature
+    selectedUnits="metric"
+    temp={20}
+  />
+</div>
+`;
+
+exports[`TemperatureRange component should match the last snapshot with min, max and average temperatures 1`] = `
+<div
+  className="tempRange"
+>
+  <Temperature
+    className="tempEdge minTemp"
+    selectedUnits="metric"
+    temp={10}
+  />
+  <Temperature
+    selectedUnits="metric"
+    temp={20}
+  />
+  <Temperature
+    className="tempEdge maxTemp"
+    selectedUnits="metric"
+    temp={30}
+  />
+</div>
+`;
