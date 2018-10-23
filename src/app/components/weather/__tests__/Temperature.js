@@ -11,7 +11,7 @@ import styles from '../Temperature.css';
 Enzyme.configure({adapter: new Adapter()});
 
 describe('Temperature component', () => {
-  const selectedUnits = 'metric';
+  const selectedUnits = UNITS.metric.name;
   const temp = 20;
 
   it('should render temperature', () => {
@@ -34,7 +34,7 @@ describe('Temperature component', () => {
   });
 
   it('should render temperature in imperial units', () => {
-    const imperialUnits = 'imperial';
+    const imperialUnits = UNITS.imperial.name;
     const wrapper = shallow(
       <Temperature
         selectedUnits={imperialUnits}

@@ -6,12 +6,14 @@ import toJson from 'enzyme-to-json';
 import TemperatureRange from '../TemperatureRange';
 import Temperature from '../Temperature';
 
+import {UNITS} from '../../../constants';
+
 import styles from '../TemperatureRange.css';
 
 Enzyme.configure({adapter: new Adapter()});
 
 describe('TemperatureRange component', () => {
-  const selectedUnits = 'metric';
+  const selectedUnits = UNITS.metric.name;
   const minTemp = 10;
   const temp = 20;
   const maxTemp = 30;
