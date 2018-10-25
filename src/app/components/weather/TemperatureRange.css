@@ -10,6 +10,12 @@
 .tempEdge {
   opacity: .6;
   font-size: .6em;
+
+  @media s-screen-width {
+    & {
+      display: none;
+    }
+  }
 }
 
 .minTemp {
@@ -30,13 +36,4 @@
 .maxTemp::after {
   color: currentColor;
   content: '↑';
-}
-
-.minTemp,
-.maxTemp {
-  & {
-    @media s-screen-width {
-      display: none;
-    }
-  }
 }

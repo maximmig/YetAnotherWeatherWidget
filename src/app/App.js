@@ -320,6 +320,6 @@ DashboardAddons.registerWidget((dashboardApi, registerWidgetApi) => {
         registerWidgetApi={registerWidgetApi}
       />
     </Provider>,
-    document.getElementById('app-container'),
+    document.querySelector('[data-js-app-container]'),
   );
 });

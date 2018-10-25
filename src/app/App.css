@@ -4,46 +4,36 @@
 @value unit from "@jetbrains/ring-ui/components/global/global.css";
 @value s-screen-width, s-screen-height, m-screen-width, m-screen-height from "./variables.css";
 
+:global(html) {
+  height: 100%;
+}
+
+:global([data-js-app-container]) {
+  box-sizing: border-box;
+  height: 100%;
+}
+
 :global(.widget-body) {
+  background: var(--ring-content-background-color);
+  box-sizing: border-box;
+  font-size: var(--ring-font-size);
+  height: 100%;
   margin: 0;
   padding: calc(unit * 2);
-
-  background: var(--ring-content-background-color);
-
-  font-size: var(--ring-font-size);
 }
 
 .widget {
   composes: font from "@jetbrains/ring-ui/components/global/global.css";
 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
 .futureForecast {
   opacity: .7;
-}
-
-/* flexible structure, to keep things in one place */
-:global(html) {
-  height: 100%;
-}
-
-:global(.widget-body) {
-  box-sizing: border-box;
-  height: 100%;
-  padding: calc(unit * 2);
-}
-
-:global(#app-container) {
-  box-sizing: border-box;
-  height: 100%;
-}
-
-.widget {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .widgetTabs {
@@ -53,20 +43,20 @@
   height: 100%;
 
   @media m-screen-height {
-    & > div:first-child {
+    & > :first-child {
       margin-bottom: unit;
     }
   }
 
   @media s-screen-height, s-screen-width {
-    & > div:first-child {
+    & > :first-child {
       display: none;
     }
   }
 }
 
 /* no selector for tab content element, proprietary design */
-.widgetTabs > div:last-child {
+.widgetTabs > :last-child {
   flex-grow: 1;
   height: 100%;
   overflow-x: hidden;

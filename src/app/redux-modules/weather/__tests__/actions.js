@@ -18,10 +18,11 @@ const mockForecast = {forecast: 'forecast'};
 const mockLastUpdateTime = 1000;
 
 jest.mock('../../../helpers', () => ({
-  loadWeatherAndForecast: jest.fn(() => new Promise((resolve, reject) => resolve([mockWeather, mockForecast]))),
+  loadWeatherAndForecast: jest.fn(() =>
+    new Promise((resolve, reject) => resolve([mockWeather, mockForecast]))), // eslint-disable-line no-unused-vars
   now: jest.fn(() => mockLastUpdateTime),
 }));
-const helpers = require('../../../helpers');
+import * as helpers from '../../../helpers'; //eslint-disable-line import/first
 
 describe('fetchWeatherSucceeded', () => {
   it('works', () => {

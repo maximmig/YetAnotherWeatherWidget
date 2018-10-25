@@ -19,6 +19,7 @@ describe('TemperatureRange component', () => {
   const maxTemp = 30;
 
   it('should render a Temperature component for each temperature', () => {
+    const fullTempRangeComponentCount = 3;
     const wrapper = shallow(
       <TemperatureRange
         selectedUnits={selectedUnits}
@@ -27,7 +28,7 @@ describe('TemperatureRange component', () => {
         maxTemp={maxTemp}
       />
     );
-    expect(wrapper.find(Temperature).length).toEqual(3);
+    expect(wrapper.find(Temperature).length).toEqual(fullTempRangeComponentCount);
     expect(wrapper.find(`.${styles.minTemp}`).length).toEqual(1);
     expect(wrapper.find(`.${styles.maxTemp}`).length).toEqual(1);
   });

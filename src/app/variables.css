@@ -5,7 +5,6 @@ sWidth and sHeight are my 1x1 widget size.
 multiply them by a random grow factor (120%)
 */
 @value growFactor: 1.2;
-
 @value sWidth: 178px;
 @value mWidth: 372px;
 @value sHeight: 144px;
